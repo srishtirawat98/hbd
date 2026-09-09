@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Little Surprise ♡</title>
+  <meta name="description" content="A special birthday surprise, just for you ♡" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============================================
+       BACKGROUND LAYERS
+       ============================================ -->
+  <div class="bg-decorations"></div>
+  <div class="floating-hearts"></div>
+  <div class="sparkle-container"></div>
+
+  <!-- ============================================
+       WELCOME / PASSWORD PAGE
+       ============================================ -->
+  <main class="welcome-page">
+    <div class="envelope-card">
+      <!-- Envelope Icon -->
+      <div class="envelope-icon">💌</div>
+
+      <!-- Heading -->
+      <h1 class="welcome-heading">Hey, you... ♡</h1>
+
+      <!-- Sub-text -->
+      <p class="welcome-subtext">I have a little surprise for you.</p>
+      <p class="welcome-hint">Only one person knows the password 🎀</p>
+
+      <!-- Password Form -->
+      <form id="passwordForm" autocomplete="off">
+        <div class="password-group">
+          <input
+            type="password"
+            id="passwordInput"
+            class="password-input"
+            placeholder="Enter the secret password..."
+            autofocus
+            autocomplete="off"
+          />
+        </div>
+        <button type="submit" class="submit-btn">
+          Open My Surprise ♡
+        </button>
+      </form>
+
+      <!-- Error Message -->
+      <p id="errorMsg" class="error-msg" aria-live="polite"></p>
+    </div>
+  </main>
+
+  <!-- ============================================
+       UNLOCK ANIMATION OVERLAY
+       ============================================ -->
+  <div id="unlockOverlay" class="unlock-overlay">
+    <div class="unlock-content">
+      <div class="unlock-envelope">💌</div>
+      <p class="unlock-text">Opening your surprise...</p>
+    </div>
+  </div>
+
+  <!-- ============================================
+       MUSIC BUTTON
+       ============================================ -->
+  <button id="musicBtn" class="music-btn" aria-label="Toggle music">
+    🎵
+  </button>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,874 @@
+/* ============================================
+   🎀 BIRTHDAY SURPRISE — STYLES
+   ============================================
+   
+   🎨 CHANGE COLORS HERE:
+   Modify the CSS variables below to change 
+   the entire color theme of the website.
+   ============================================ */
+
+:root {
+  /* ---- PRIMARY PALETTE ---- */
+  --cream:        #FFF8F0;
+  --cream-dark:   #F5EDE0;
+  --beige:        #F0E6D6;
+  --soft-pink:    #F4C6C6;
+  --dusty-rose:   #D4A0A0;
+  --rose:         #C48B8B;
+  --blush:        #EACEC6;
+  --warm-white:   #FFFAF5;
+  --paper:        #FEF9F2;
+
+  /* ---- TEXT COLORS ---- */
+  --brown:        #5C4033;
+  --brown-light:  #8B6F5E;
+  --brown-dark:   #3E2723;
+
+  /* ---- ACCENT ---- */
+  --gold:         #D4A574;
+  --gold-light:   #E8C9A0;
+  --pink-accent:  #E8A0A0;
+  --heart-red:    #D4736E;
+
+  /* ---- SHADOWS & OVERLAYS ---- */
+  --shadow-soft:  rgba(92, 64, 51, 0.08);
+  --shadow-med:   rgba(92, 64, 51, 0.12);
+  --overlay:      rgba(255, 248, 240, 0.6);
+}
+
+/* ============================================
+   FONTS
+   ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Inter:wght@300;400;500&family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: var(--brown);
+  background-color: var(--cream);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.7;
+  position: relative;
+}
+
+/* Paper texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ============================================
+   FLOATING BACKGROUND DECORATIONS (SVG)
+   ============================================ */
+.bg-decorations {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bg-deco {
+  position: absolute;
+  opacity: 0;
+  animation: floatDeco 20s ease-in-out infinite;
+}
+
+/* Hand-drawn flowers */
+.deco-flower {
+  width: 28px;
+  height: 28px;
+}
+
+.deco-flower svg {
+  width: 100%;
+  height: 100%;
+}
+
+.deco-star {
+  width: 14px;
+  height: 14px;
+  color: var(--gold);
+}
+
+.deco-heart {
+  width: 16px;
+  height: 16px;
+  color: var(--soft-pink);
+}
+
+.deco-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--blush);
+  border-radius: 50%;
+}
+
+@keyframes floatDeco {
+  0%, 100% {
+    opacity: 0.25;
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    opacity: 0.45;
+    transform: translateY(-15px) rotate(5deg);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translateY(-8px) rotate(-3deg);
+  }
+  75% {
+    opacity: 0.5;
+    transform: translateY(-20px) rotate(8deg);
+  }
+}
+
+/* ============================================
+   FLOATING HEARTS ANIMATION
+   ============================================ */
+.floating-hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.float-heart {
+  position: absolute;
+  bottom: -40px;
+  font-size: 18px;
+  opacity: 0;
+  animation: floatUp var(--duration, 12s) var(--delay, 0s) ease-in infinite;
+  color: var(--soft-pink);
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 0;
+    transform: translateY(0) translateX(0) rotate(0deg) scale(0.6);
+  }
+  10% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.35;
+    transform: translateY(-50vh) translateX(var(--drift, 30px)) rotate(180deg) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-110vh) translateX(var(--drift, -20px)) rotate(360deg) scale(0.4);
+  }
+}
+
+/* ============================================
+   SPARKLE EFFECT
+   ============================================ */
+.sparkle-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--gold);
+  border-radius: 50%;
+  animation: sparkleAnim 3s ease-in-out infinite;
+  box-shadow: 0 0 6px var(--gold-light);
+}
+
+@keyframes sparkleAnim {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+}
+
+/* ============================================
+   CLICK HEART CURSOR EFFECT
+   ============================================ */
+.click-heart {
+  position: fixed;
+  pointer-events: none;
+  font-size: 20px;
+  z-index: 10000;
+  animation: clickHeartAnim 0.8s ease-out forwards;
+}
+
+@keyframes clickHeartAnim {
+  0% {
+    opacity: 1;
+    transform: scale(0.5) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.2) translateY(-60px);
+  }
+}
+
+/* ============================================
+   MUSIC BUTTON
+   ============================================ */
+.music-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid var(--blush);
+  background: var(--warm-white);
+  color: var(--dusty-rose);
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px var(--shadow-soft);
+  transition: all 0.3s ease;
+}
+
+.music-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 24px var(--shadow-med);
+  border-color: var(--dusty-rose);
+}
+
+.music-btn.playing {
+  border-color: var(--dusty-rose);
+  background: var(--soft-pink);
+  color: white;
+  animation: pulse-music 2s ease-in-out infinite;
+}
+
+@keyframes pulse-music {
+  0%, 100% { box-shadow: 0 4px 16px var(--shadow-soft); }
+  50% { box-shadow: 0 4px 24px rgba(212, 160, 160, 0.3); }
+}
+
+/* ============================================
+   PAGE 1 — PASSWORD / WELCOME
+   ============================================ */
+.welcome-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+}
+
+/* Envelope / Card */
+.envelope-card {
+  background: var(--warm-white);
+  border-radius: 20px;
+  padding: 48px 40px 40px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  box-shadow:
+    0 2px 8px var(--shadow-soft),
+    0 12px 40px var(--shadow-soft);
+  border: 1px solid rgba(244, 198, 198, 0.25);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.envelope-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 4px 12px var(--shadow-soft),
+    0 20px 60px var(--shadow-med);
+}
+
+/* Decorative tape at top */
+.envelope-card::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 80px;
+  height: 28px;
+  background: linear-gradient(135deg, rgba(244, 198, 198, 0.5), rgba(228, 206, 198, 0.5));
+  border-radius: 4px;
+  z-index: 11;
+}
+
+/* Small envelope icon */
+.envelope-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  display: inline-block;
+  animation: gentleBounce 3s ease-in-out infinite;
+  filter: drop-shadow(0 2px 4px var(--shadow-soft));
+}
+
+@keyframes gentleBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.welcome-heading {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--brown);
+  margin-bottom: 8px;
+}
+
+.welcome-subtext {
+  font-family: 'Caveat', cursive;
+  font-size: 1.25rem;
+  color: var(--brown-light);
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+.welcome-hint {
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  color: var(--dusty-rose);
+  margin-bottom: 28px;
+}
+
+/* Password Input */
+.password-group {
+  margin-bottom: 20px;
+}
+
+.password-input {
+  width: 100%;
+  padding: 14px 20px;
+  border: 2px solid var(--beige);
+  border-radius: 50px;
+  background: var(--cream);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: var(--brown);
+  text-align: center;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.password-input::placeholder {
+  color: var(--brown-light);
+  opacity: 0.6;
+}
+
+.password-input:focus {
+  border-color: var(--dusty-rose);
+  box-shadow: 0 0 0 4px rgba(212, 160, 160, 0.15);
+  background: var(--warm-white);
+}
+
+/* Submit Button */
+.submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 36px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, var(--soft-pink), var(--dusty-rose));
+  color: white;
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(212, 160, 160, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 24px rgba(212, 160, 160, 0.4);
+  background: linear-gradient(135deg, var(--dusty-rose), var(--rose));
+}
+
+.submit-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Error Message */
+.error-msg {
+  font-family: 'Caveat', cursive;
+  font-size: 1.05rem;
+  color: var(--heart-red);
+  margin-top: 16px;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: all 0.3s ease;
+}
+
+.error-msg.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   UNLOCK ANIMATION OVERLAY
+   ============================================ */
+.unlock-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: var(--cream);
+}
+
+.unlock-overlay.active {
+  display: flex;
+  animation: fadeInOverlay 0.5s ease;
+}
+
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.unlock-content {
+  text-align: center;
+}
+
+.unlock-envelope {
+  font-size: 80px;
+  animation: envelopeOpen 1.5s ease forwards;
+  display: inline-block;
+}
+
+@keyframes envelopeOpen {
+  0% {
+    transform: scale(1) rotateY(0);
+    filter: none;
+  }
+  30% {
+    transform: scale(1.2) rotateY(0);
+  }
+  50% {
+    transform: scale(1.3) rotateY(90deg);
+  }
+  70% {
+    transform: scale(1.2) rotateY(180deg);
+  }
+  100% {
+    transform: scale(1.5) rotateY(360deg);
+    filter: drop-shadow(0 0 20px rgba(244, 198, 198, 0.6));
+  }
+}
+
+.unlock-text {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.8rem;
+  color: var(--dusty-rose);
+  margin-top: 24px;
+  opacity: 0;
+  animation: fadeSlideUp 0.8s 1s ease forwards;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Burst hearts during unlock */
+.unlock-heart {
+  position: absolute;
+  font-size: 24px;
+  opacity: 0;
+  animation: burstHeart 1.5s ease-out forwards;
+}
+
+@keyframes burstHeart {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(0.5);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--bx, 80px), var(--by, -120px)) scale(1.2) rotate(var(--br, 30deg));
+  }
+}
+
+/* ============================================
+   PAGE 2 — BIRTHDAY LETTER
+   ============================================ */
+.letter-page {
+  min-height: 100vh;
+  padding: 40px 24px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* Letter Card */
+.letter-card {
+  background: var(--warm-white);
+  border-radius: 16px;
+  padding: 56px 44px 44px;
+  max-width: 620px;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  box-shadow:
+    0 2px 8px var(--shadow-soft),
+    0 16px 48px var(--shadow-soft);
+  border: 1px solid rgba(244, 198, 198, 0.2);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: letterReveal 1s 0.3s ease forwards;
+}
+
+@keyframes letterReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tape decoration at top */
+.letter-card::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1.5deg);
+  width: 100px;
+  height: 30px;
+  background: linear-gradient(135deg, rgba(244, 198, 198, 0.45), rgba(228, 206, 198, 0.45));
+  border-radius: 4px;
+  z-index: 11;
+}
+
+/* Second tape */
+.letter-card::after {
+  content: '';
+  position: absolute;
+  top: -6px;
+  right: 40px;
+  transform: rotate(3deg);
+  width: 60px;
+  height: 24px;
+  background: linear-gradient(135deg, rgba(232, 201, 160, 0.35), rgba(212, 165, 116, 0.3));
+  border-radius: 3px;
+  z-index: 11;
+}
+
+.letter-heading {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--brown);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.letter-birthday {
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem;
+  color: var(--dusty-rose);
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+/* ---- CHANGE YOUR LETTER TEXT BELOW ---- */
+.letter-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--brown);
+}
+
+.letter-body p {
+  margin-bottom: 18px;
+}
+
+.letter-body p:last-child {
+  margin-bottom: 0;
+}
+
+.letter-signature {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.4rem;
+  color: var(--dusty-rose);
+  text-align: right;
+  margin-top: 32px;
+}
+
+/* Small doodle flourish */
+.letter-flourish {
+  text-align: center;
+  font-size: 1.4rem;
+  color: var(--blush);
+  margin: 24px 0 8px;
+  letter-spacing: 12px;
+  opacity: 0.6;
+}
+
+/* ============================================
+   POLAROID / MEMORY SECTION
+   ============================================ */
+.memories-section {
+  max-width: 720px;
+  width: 100%;
+  margin-top: 60px;
+  z-index: 10;
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: letterReveal 1s 0.8s ease forwards;
+}
+
+.memories-heading {
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem;
+  color: var(--brown-light);
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.polaroid-grid {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.polaroid {
+  background: white;
+  padding: 12px 12px 40px;
+  border-radius: 4px;
+  box-shadow:
+    0 2px 8px var(--shadow-soft),
+    0 8px 24px var(--shadow-soft);
+  transform: rotate(var(--rotation, -2deg));
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  width: 200px;
+  flex-shrink: 0;
+}
+
+.polaroid:hover {
+  transform: rotate(0deg) scale(1.05) translateY(-8px);
+  box-shadow:
+    0 4px 12px var(--shadow-soft),
+    0 16px 40px var(--shadow-med);
+}
+
+.polaroid:nth-child(1) { --rotation: -3deg; }
+.polaroid:nth-child(2) { --rotation: 2deg; }
+.polaroid:nth-child(3) { --rotation: -1.5deg; }
+
+/* ---- CHANGE YOUR PHOTOS HERE ----
+   Replace the background-color with your own images:
+   background-image: url('your-photo.jpg');
+   background-size: cover;
+   background-position: center;
+   ---------------------------------- */
+.polaroid-img {
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, var(--cream), var(--beige));
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  color: var(--brown-light);
+  text-align: center;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.polaroid-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.polaroid-caption {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  color: var(--brown-light);
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  text-align: center;
+  padding: 40px 24px 24px;
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  color: var(--brown-light);
+  opacity: 0.5;
+  z-index: 10;
+  position: relative;
+}
+
+/* ============================================
+   PAGE TRANSITION
+   ============================================ */
+.page-fade-out {
+  animation: pageFadeOut 0.6s ease forwards;
+}
+
+@keyframes pageFadeOut {
+  to {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 600px) {
+  .envelope-card {
+    padding: 40px 28px 32px;
+    border-radius: 16px;
+  }
+
+  .welcome-heading {
+    font-size: 1.7rem;
+  }
+
+  .welcome-subtext {
+    font-size: 1.1rem;
+  }
+
+  .password-input {
+    padding: 12px 16px;
+    font-size: 0.9rem;
+  }
+
+  .submit-btn {
+    padding: 12px 28px;
+    font-size: 1.1rem;
+  }
+
+  .letter-card {
+    padding: 44px 24px 32px;
+    border-radius: 12px;
+  }
+
+  .letter-heading {
+    font-size: 1.8rem;
+  }
+
+  .letter-birthday {
+    font-size: 1.3rem;
+  }
+
+  .letter-body {
+    font-size: 0.95rem;
+  }
+
+  .polaroid-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .polaroid {
+    width: 220px;
+  }
+
+  .music-btn {
+    bottom: 16px;
+    right: 16px;
+    width: 42px;
+    height: 42px;
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .polaroid {
+    width: 180px;
+    padding: 10px 10px 32px;
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .float-heart,
+  .sparkle,
+  .bg-deco {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   SMALL HANDWRITTEN DOODLE ACCENTS (CSS-only)
+   ============================================ */
+.doodle-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 24px 0;
+  opacity: 0.35;
+  color: var(--dusty-rose);
+  font-size: 0.8rem;
+  letter-spacing: 6px;
+}
+
+.doodle-divider::before,
+.doodle-divider::after {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--blush);
+}
